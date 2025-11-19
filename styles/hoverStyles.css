@@ -1,0 +1,232 @@
+/* body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+} */
+
+.container_hover {
+  display: flex;
+  flex: 1;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * .5);
+  padding-left: calc(var(--bs-gutter-x) * .5);
+  margin-right: auto;
+  margin-left: auto;
+  height: 100%;
+  overflow: clip;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.card {
+  margin: 0 0.5em;
+  height: 100%;
+  flex: 1 1 1%;
+  position: relative;
+  opacity: 1;
+  transition: flex 600ms cubic-bezier(0.25, 1, 0.5, 1), opacity 250ms ease;
+}
+.card.is-active,
+.card:hover {
+  flex-basis: 30%;
+}
+.card__inner {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.card picture {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 600px;
+  overflow: hidden;
+  position: relative;
+}
+.card picture img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.card.is-active, .card:hover {
+  opacity: 1;
+}
+/* .card:nth-child(2), .card:nth-child(5), .card:nth-child(9) {
+  margin-top: 0;
+}
+.card:nth-child(2), .card:nth-child(4), .card:nth-child(6), .card:nth-child(8), .card:nth-child(10) {
+  margin-top: 2.5%;
+}
+.card:nth-child(3), .card:nth-child(7) {
+  margin-top: 5%;
+} */
+
+.is-inactive{
+  background-color: #3C1C0F;
+}
+
+.is-inactive img{
+  display: none;
+}
+
+/* Card Content Overlay */
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 60px 40px 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card__number {
+  font-family: 'Piazzolla', serif;
+  font-weight: 300;
+  font-size: 70px;
+  line-height: 76px;
+  color: #E7FF7E;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.card.is-active .card__number,
+.card:hover .card__number {
+  color: #3C1C0F;
+}
+
+.card__title {
+  font-family: 'Piazzolla', serif;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 76px;
+  margin: 0;
+}
+
+.card__title--vertical {
+  color: #E7FF7E;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  position: absolute;
+  left: 35%;
+  top: 8em;
+  height: 400px;
+  transform: translate(-50%, -50%) rotate(180deg);
+  text-align: left;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.card__title--horizontal {
+  color: #3C1C0F;
+  margin-top: 20px;
+  margin-bottom: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.card__description {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  font-size: 15px;
+  line-height: 27px;
+  color: #E7FF7E;
+  margin: 0 0 20px 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  max-width: 550px;
+}
+
+
+.card__button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #E7FF7E;
+    border: 1px solid #E7FF7E;
+    border-radius: 15px;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #E7FF7E;
+    text-decoration: none;
+    width: fit-content;
+    pointer-events: auto;
+}
+
+
+
+.btn-outline-about-section {
+
+}
+
+
+.card__button span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #3C1C0F;
+  padding-right: 20px;
+}
+
+.card__button img {
+  width: 7px;
+  height: 7px;
+  display: block !important;
+}
+
+/* Show/hide title versions based on state */
+.card.is-active .card__title--vertical,
+.card:hover .card__title--vertical {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.card.is-active .card__title--horizontal,
+.card:hover .card__title--horizontal {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 0.5s, visibility 0s linear 0s;
+}
+
+/* Show description and button on hover/active with same timing as title */
+.card.is-active .card__description,
+.card:hover .card__description {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.5s;
+}
+
+.card.is-active .card__button,
+.card:hover .card__button {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.5s;
+}
