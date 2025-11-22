@@ -28,9 +28,6 @@
                 <a class="navbar-brand" href="#">
                     <img src="assets/logo_cores.svg" alt="JAF Logo" class="logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class=" justify-content-end" id="navbarNav">
                     <button class="btn_transparent">
                         <span>contacte-nos</span>
@@ -191,9 +188,10 @@
             <div class="col-md-6 p-0">
                 <video src="assets/teste1.mp4" class="hero-img" id="hero-video" autoplay loop muted playsinline></video>
                 <!-- <img src="assets/image2.svg" alt="Madeira cortada com plantas" class="hero-img"> -->
-                   <button class="btn_castanho">
+                   <button class="btn-outline-about-section">
                         <span>os nossos serviços</span>
-                        <img src="assets/ponto_verde.svg" alt="">
+                        <img class="ponto_btns_castanho" src="assets/ponto_castanho.png" alt="">
+                        <img class="ponto_btns_flurescente" src="assets/ponto_floreshente.svg" alt="">
                     </button>
             </div>
         </div>
@@ -203,10 +201,10 @@
     <section class="about-section py-5" id="sobre">
         <div class="container-fluid ">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-12">
                     <h4 class="section-label">A nossa história</h4>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 col-12">
                     <p class="about-text">
                         Criada em 1990, JAF é uma empresa familiar dedicada à exploração florestal, serração e transporte de madeira, garantindo qualidade e sustentabilidade em cada etapa. Sempre com o compromisso de transformar os recursos naturais em soluções eficientes. Confiança, tradição e inovação são as nossas palavras-chave.
                     </p>
@@ -215,7 +213,8 @@
                     </p>
                     <button class="btn btn-outline-about-section">
                         <span>Saiba mais</span>
-                        <img src="assets/ponto_floreshente.svg" alt="">
+                        <img class="ponto_btns_castanho" src="assets/ponto_castanho.png" alt="">
+                        <img class="ponto_btns_flurescente" src="assets/ponto_floreshente.svg" alt="">
                     </button>
                 </div>
             </div>
@@ -232,7 +231,7 @@
             <div class="card__content">
                 <p class="card__number">01.</p>
                 <h2 class="card__title card__title--vertical">Exploração<br>Florestal</h2>
-                <h2 class="card__title card__title--horizontal">Exploração<br>Florestal</h2>
+                <h2 class="card__title card__title--horizontal card__title--horizontal-mobile-first">Exploração<br>Florestal</h2>
                 <p class="card__description">A JAF dedica-se à gestão e exploração sustentável de recursos florestais, garantindo o fornecimento de madeira de pinho e eucalipto de alta qualidade. Privilegia práticas responsáveis e certificadas, assegurando a preservação das florestas e a valorização de matérias-primas locais.</p>
                 <button class="card__button">
                     <span>SAIBA MAIS</span>
@@ -337,7 +336,7 @@
                 </div>
             </div>
             <div class="row  g-4">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-12">
                     <div class="commitment-card firstRespCard">
                         <div class="titlePlusTitle">
                             <div class="commitment-icon">
@@ -354,7 +353,7 @@
                         </button> 
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-12">
                     <div class="commitment-card">
                         <div class="titlePlusTitle">
                             <div class="commitment-icon">
@@ -371,7 +370,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-12">
                     <div class="commitment-card">
                         <div class="titlePlusTitle">
                             <div class="commitment-icon">
@@ -411,7 +410,7 @@
         <div class="container">
             <p class="section-label piquenos-label">Atualidade</p>
             <div class="row g-4">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-12">
                     <div class="gallery-card">
                         <img src="assets/atualidade-img-1.png" alt="Floresta" class="gallery-img">
                         <div class="gallery-overlay">
@@ -420,7 +419,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="col-lg-4">
+                 <div class="col-lg-4 col-12">
                     <div class="gallery-card">
                         <img src="assets/atualidade-img-2.png" alt="Floresta" class="gallery-img">
                         <div class="gallery-overlay">
@@ -429,7 +428,7 @@
                         </div>
                     </div>
                 </div>
-                   <div class="col-lg-4">
+                   <div class="col-lg-4 col-12">
                     <div class="gallery-card">
                         <img src="assets/atualidade-img-3.png" alt="Floresta" class="gallery-img">
                         <div class="gallery-overlay">
@@ -446,10 +445,10 @@
     <section class="cta-section py-5">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6 col-12">
                     <h2 class="cta-title">O futuro da JAF<br>começa contigo!</h2>
                 </div>
-                <div class="col-lg-6 text-end">
+                <div class="col-lg-6 col-md-4 col-12 text-end">
                     <button class="btn btn-cta">
                         <span>CANDIDATURAS</span>
                         <img class="ponto_btns_verde" src="assets/dot-olive.svg" alt="">
@@ -464,10 +463,10 @@
     <footer class="footer py-5" id="contato">
         <div class="container ">
             <div class="row">
-                <div class="col-lg-5 footer-logo-col">
+                <div class="col-lg-5 col-md-5 col-12 footer-logo-col">
                     <img src="assets/logo-white.svg" alt="JAF Logo" class="footer-logo mb-4">
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-12">
                     <ul class="footer-nav-links">
                         <li><a href="#sobre">Quem somos</a></li>
                         <li><a href="#areas">Serviços</a></li>
@@ -482,7 +481,7 @@
                         <li><a href="#">CANAL DE DENUNCIAS</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-3 col-12">
                     <h5 class="footer-company-name">José Afonso e Filhos, Lda</h5>
                     <p class="footer-address">
                         Zona Industrial de Açude Pinto<br>
@@ -490,7 +489,7 @@
                     </p>
                     <button class="btn btn-footer-contact">
                         <span>CONTACTE-NOS</span>
-                         <img class="ponto_btns_castanho" src="assets/ponto_castanho.png" alt="">
+                        <img class="ponto_btns_castanho" src="assets/ponto_castanho.png" alt="">
                         <img class="ponto_btns_flurescente" src="assets/ponto_floreshente.svg" alt="">
                         <!-- <img src="assets/ponto_castanho.png" alt=""> -->
                     </button>

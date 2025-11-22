@@ -1,49 +1,223 @@
-const cards = document.querySelectorAll(".card");
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll(".card");
 
-// Set first card as active by default, others as inactive
-cards.forEach((card, index) => {
-  if (index === 0) {
-    card.classList.add("is-active");
-    card.classList.remove("is-inactive");
-  } else {
-    card.classList.add("is-inactive");
-    card.classList.remove("is-active");
+  // Check if cards exist
+  if (!cards || cards.length === 0) {
+    console.warn('No cards found in the DOM');
+    return;
   }
-});
 
-// Use event delegation for better performance
-document.addEventListener("mouseenter", event => {
-  const card = event.target.closest(".card");
-  if (card) {
-    cards.forEach(c => c.classList.remove("is-active"));
-    cards.forEach(c => c.classList.add("is-inactive"));
-    card.classList.add("is-active");
-    card.classList.remove("is-inactive");
+  // Function to check if screen is mobile or tablet
+  function isMobile() {
+    return window.innerWidth <= 1024;
   }
-}, true);
 
-document.addEventListener("mouseleave", event => {
-  const card = event.target.closest(".card");
-  if (card) {
-    // Reset to initial state: first card active, others inactive
-    cards.forEach((c, index) => {
+  // Set initial card state
+  function setInitialCardState() {
+    cards.forEach((card, index) => {
       if (index === 0) {
-        c.classList.add("is-active");
-        c.classList.remove("is-inactive");
+        card.classList.add("is-active");
+        card.classList.remove("is-inactive");
       } else {
-        c.classList.add("is-inactive");
-        c.classList.remove("is-active");
+        card.classList.add("is-inactive");
+        card.classList.remove("is-active");
       }
     });
   }
-}, true);
 
-document.addEventListener("click", event => {
-    const card = event.target.closest(".card");
-    if (card) {
+  // Desktop hover logic - only initialized on desktop
+  let desktopHoverListeners = null;
+
+  function initDesktopCardHover() {
+    if (isMobile()) return; // Don't initialize on mobile
+
+    setInitialCardState();
+
+    // Store listeners so we can remove them later if needed
+    const onMouseEnter = (event) => {
+      const card = event.target.closest(".card");
+      if (card && cards) {
+        cards.forEach(c => {
+          c.classList.remove("is-active");
+          c.classList.add("is-inactive");
+        });
+        card.classList.add("is-active");
+        card.classList.remove("is-inactive");
+      }
+    };
+
+    const onMouseLeave = (event) => {
+      const card = event.target.closest(".card");
+      if (card && cards) {
+        setInitialCardState();
+      }
+    };
+
+    const onClick = (event) => {
+      const card = event.target.closest(".card");
+      if (card && cards) {
         cards.forEach(c => c.classList.add("is-active"));
+      }
+    };
+
+    document.addEventListener("mouseenter", onMouseEnter, true);
+    document.addEventListener("mouseleave", onMouseLeave, true);
+    document.addEventListener("click", onClick, true);
+
+    desktopHoverListeners = {
+      onMouseEnter,
+      onMouseLeave,
+      onClick
+    };
+  }
+
+  function cleanupDesktopHover() {
+    if (desktopHoverListeners) {
+      document.removeEventListener("mouseenter", desktopHoverListeners.onMouseEnter, true);
+      document.removeEventListener("mouseleave", desktopHoverListeners.onMouseLeave, true);
+      document.removeEventListener("click", desktopHoverListeners.onClick, true);
+      desktopHoverListeners = null;
     }
-}, true);
+  }
+
+  // Mobile scroll animation logic - optimized for performance
+  let mobileObserver = null;
+
+  function initMobileCardScroll() {
+    if (!isMobile()) return; // Don't initialize on desktop
+
+    // Cleanup any existing observer
+    if (mobileObserver) {
+      mobileObserver.disconnect();
+      mobileObserver = null;
+    }
+
+    setInitialCardState();
+
+    // Optimized Intersection Observer settings
+    const observerOptions = {
+      root: null,
+      rootMargin: '-35% 0px -35% 0px', // Trigger when card is in middle 30% of viewport
+      threshold: [0.2, 0.5, 0.8] // Fewer thresholds for better performance
+    };
+
+    let activeCardIndex = 0;
+    let isUpdating = false;
+
+    mobileObserver = new IntersectionObserver((entries) => {
+      // Prevent rapid-fire updates
+      if (isUpdating) return;
+
+      // Find the most visible entry
+      let mostVisible = null;
+      let maxRatio = 0;
+
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          mostVisible = entry.target;
+        }
+      });
+
+      // Only update if we have a clear winner and it's different from current
+      if (mostVisible && maxRatio > 0.2) {
+        const newActiveIndex = Array.from(cards).indexOf(mostVisible);
+
+        // Only update if the active card has changed
+        if (newActiveIndex !== activeCardIndex) {
+          isUpdating = true;
+          activeCardIndex = newActiveIndex;
+
+          cards.forEach((c, index) => {
+            if (index === activeCardIndex) {
+              c.classList.add("is-active");
+              c.classList.remove("is-inactive");
+            } else {
+              c.classList.remove("is-active");
+              c.classList.add("is-inactive");
+            }
+          });
+
+          // Release lock after animation frame
+          requestAnimationFrame(() => {
+            isUpdating = false;
+          });
+        }
+      }
+    }, observerOptions);
+
+    // Observe all cards
+    cards.forEach(card => {
+      mobileObserver.observe(card);
+    });
+
+    // Force check initial state after a brief delay to ensure first card shows properly
+    setTimeout(() => {
+      if (cards.length > 0) {
+        const firstCard = cards[0];
+        const firstCardRect = firstCard.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        // If first card is at the top of viewport, ensure it's active with content visible
+        if (firstCardRect.top < viewportHeight * 0.5) {
+          activeCardIndex = 0;
+          firstCard.classList.add("is-active");
+          firstCard.classList.remove("is-inactive");
+
+          // Make sure all other cards are inactive
+          cards.forEach((card, index) => {
+            if (index !== 0) {
+              card.classList.remove("is-active");
+              card.classList.add("is-inactive");
+            }
+          });
+        }
+      }
+    }, 150);
+  }
+
+  function cleanupMobileScroll() {
+    if (mobileObserver) {
+      mobileObserver.disconnect();
+      mobileObserver = null;
+    }
+  }
+
+  // Initialize based on screen size
+  function initCards() {
+    // Clean up any existing listeners/observers
+    cleanupDesktopHover();
+    cleanupMobileScroll();
+
+    // Initialize appropriate mode
+    if (isMobile()) {
+      initMobileCardScroll();
+    } else {
+      initDesktopCardHover();
+    }
+  }
+
+  // Re-initialize on window resize with debouncing
+  let resizeTimer;
+  let currentMode = isMobile() ? 'mobile' : 'desktop';
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const newMode = isMobile() ? 'mobile' : 'desktop';
+
+      // Only re-initialize if mode changed
+      if (currentMode !== newMode) {
+        currentMode = newMode;
+        initCards();
+      }
+    }, 250);
+  });
+
+  // Initialize on page load
+  initCards();
+});
 
 /* const heroVideo = document.getElementById("hero-video");
 

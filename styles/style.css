@@ -168,12 +168,6 @@ header {
     margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
-}
-
 /* About Section */
 .about-section {
     background-color: var(--beige);
@@ -420,7 +414,7 @@ header {
     gap: 10px;
     background-color: var(--tronco-jaf);
     border: 1px solid var(--tronco-jaf);
-       border-radius: 15px;
+    border-radius: 15px;
     padding: 0.8rem 1.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -448,13 +442,54 @@ header {
     height: 7px;
 }
 
+.btn-cta:hover {
+    background-color: var(--text-dark);
+    color: #e7ff7e;
+    transform: translateY(-2px);
+}
+
+.ponto_btns_flurescente{
+    display: none;
+}
+
+.btn-cta:hover .ponto_btns_flurescente{
+    display: block;
+}
+
+.btn-cta:hover .ponto_btns_verde{
+    display: none;
+}
+
+.btn-outline-about-section .ponto_btns_flurescente{
+    display: block;
+}
+
+.btn-outline-about-section .ponto_btns_castanho{
+    display: none;
+}
+
+.btn-outline-about-section:hover .ponto_btns_flurescente{
+    display: none;
+}
+
+.btn-outline-about-section:hover .ponto_btns_castanho{
+    display: block;
+}
+
+
+.hero-section .btn-outline-about-section {
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
+}
+
 .btn-footer-contact {
     display: flex;
     align-items: center;
     gap: 10px;
     background-color: #878435;
     border: 1px solid var(--tronco-jaf);
-       border-radius: 15px;
+    border-radius: 15px;
     padding: 0.8rem 1.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -464,7 +499,7 @@ header {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #3C1C0F;
-        margin-bottom: 10rem;
+    margin-bottom: 10rem;
     text-decoration: none;
 }
 
@@ -755,26 +790,6 @@ header {
     color: var(--text-dark);
 }
 
-
-
-.btn-cta:hover {
-    background-color: var(--text-dark);
-    color: #e7ff7e;
-    transform: translateY(-2px);
-}
-
-.ponto_btns_flurescente{
-    display: none;
-}
-
-.btn-cta:hover .ponto_btns_flurescente{
-    display: block;
-}
-
-.btn-cta:hover .ponto_btns_verde{
-    display: none;
-}
-
 /* Footer */
 .footer {
     background-color: var(--tronco-jaf);
@@ -887,66 +902,8 @@ header {
    color: var(--eletric-jaf);
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-    .hero-title {
-        font-size: 3rem;
-    }
 
-    .commitment-title,
-    .mission-title,
-    .cta-title {
-        font-size: 2rem;
-    }
 
-    .service-title {
-        font-size: 2rem;
-    }
-
-    .service-card-vertical {
-        min-height: 300px;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        margin-top: 60px;
-    }
-
-    .nav-link {
-        margin: 0.5rem 0;
-    }
-
-    .btn-primary-custom {
-        margin-left: 0;
-        margin-top: 1rem;
-    }
-
-    .quality-buttons {
-        flex-direction: column;
-    }
-
-    .btn-outline-custom {
-        width: 100%;
-    }
-
-    .gallery-card {
-        height: 300px;
-    }
-
-    .cta-title {
-        margin-bottom: 2rem;
-    }
-
-    .btn-cta {
-        width: 100%;
-    }
-
-    .service-title-vertical {
-        writing-mode: horizontal-tb;
-        transform: none;
-    }
-}
 
 /* Animations */
 @keyframes fadeInUp {
@@ -1011,27 +968,7 @@ img {
     margin-left: 10px;
 }
 
-.btn_castanho{
-    background-color: #3C1C0F;
-    width: 115px;
-    height: 45px;
-    border: none;
-    border-radius: 20px; 
-    margin-left: 10px;
-}
 
-.hero-section .btn_castanho {
-        font-family: 'Inter', sans-serif;
-    color: #E7FF7E;
-    width: 220px;
-    position: absolute;
-    bottom: 30px;
-    right: 60px;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 1px;
-    font-weight: 100;
-}
 
 
 .hero-section .btn_castanho img{
@@ -1050,7 +987,271 @@ img {
     margin-bottom: 15px !important;
 }
 
+/* Tablet Media Query */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .about-section div{
+        --bs-gutter-x: 0;
+    }
 
-.piquenos-label{
+    .about-section{
+        padding: 74px 1.5rem !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 74px 0;
+    }
 
+    .services-section{
+        padding-top: 0 !important;
+        height: 950px;
+    }
+
+    .container_hover{
+        padding:  0 1.5rem !important;
+    }
+
+    .quality-section div{
+        --bs-gutter-x: 0;
+    }
+
+    .quality-section {
+        padding: 4rem 1.5em 74px 1.5em !important;
+        margin-bottom:  0 !important;
+    }
+
+    .commitment-section{
+        height: unset !important;
+        margin: 0rem 1.5rem;
+    }
+
+    .firstRespCard{
+        padding: 2rem 0;
+    }
+
+    .commitment-card{
+        height: 250px;
+        padding: 2rem 0;
+    }
+
+    .commitment-section div .g-4{
+        gap: 20px;
+    }
+
+    .mission-section{
+        margin: 0;
+        padding: 74px 0 !important;
+    }
+
+    .gallery-section div{
+        --bs-gutter-x: 0;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: unset;
+    }
+
+    .gallery-section{
+        padding-top: 0 !important; 
+        padding-bottom: 0 !important; 
+        margin: 0 1.5rem;
+    }
+
+    .cta-section {
+        margin: 74px 1.5rem 74px 1.5rem;
+        height: 15rem;
+    }
+
+    .footer div{
+        --bs-gutter-x: 0;
+        max-width: unset;
+    }
+
+    .footer {
+        padding: 0 2rem;
+    }
+
+    .btn-footer-contact{
+        padding: 0.8rem 0.5rem;
+        margin-bottom: 3.9rem;
+    }
+}
+
+/* Mobile Media Query */
+@media (max-width: 768px) {
+    .hero-section {
+        margin-top: 30px;
+    }
+
+    .nav-link {
+        margin: 0.5rem 0;
+    }
+
+    .btn-primary-custom {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .quality-buttons {
+        flex-direction: column;
+    }
+
+    .btn-outline-custom {
+        width: fit-content;
+    }
+
+    .gallery-card {
+        height: 300px;
+    }
+
+    .cta-title {
+        margin-bottom: 2rem;
+    }
+
+    .btn-cta {
+        width: fit-content;
+    }
+
+    .service-title-vertical {
+        writing-mode: horizontal-tb;
+        transform: none;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    #navbarNav{
+        width: 50%;
+        display: flex;
+    }
+    
+    .navbar-brand{
+        width: 50%;
+        margin-right: 0;
+    }
+
+    .navbar .btn_transparent{
+        width: 155px;
+        display: none;
+    }
+
+    /* .navbar .btn_verde{
+        width: 75px;
+    } */
+
+    .navbar .btn_transparent span{
+        font-size: 11px;
+    }
+
+    .navbar .btn_transparent img{
+        padding-left: 0.3em !important;
+    }
+
+    .menu-images{
+        display: none;
+    }
+
+    .hero_text{
+        bottom: 360px;
+    }
+    
+    .hero-section p{
+        font-size: 16px;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-section h1{
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-section video{
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .hero-section img{
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .hero-section .btn-outline-about-section{
+        right: 40px;
+    }
+
+    /* About section */
+    .about-section{
+        margin-top: 30px;
+        padding: 0 24px;
+        padding-top: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .about-section div{
+        --bs-gutter-x: 0rem; 
+    }
+
+    /* Services section */
+    .services-section{
+        padding-top: 0 !important;
+        height: auto;
+        padding-bottom: 0 !important;
+    }
+    /* Quality-section */
+    .quality-section{
+        padding: 24px 24px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .quality-section div{
+        --bs-gutter-x: 0;
+    }
+
+    .commitment-section{
+        height: unset;
+        margin: 0rem 14px;
+        padding: 3rem 1rem;
+    }
+
+    .mission-section{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .firstRespCard{
+        padding: 0rem;
+        margin-top: 60px !important;
+    }
+
+    .commitment-card{
+        padding: 0rem;
+        height: 290px;
+    }
+
+    .commitment-section div .g-4{
+        gap: 60px;
+    }
+
+    .gallery-section{
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .cta-section{
+        margin: 78px 14px 78px 14px;
+        padding: 5rem 2rem;
+    }
+
+    .cta-title{
+        font-size: 46px;
+    }
+    
+    .text-end{
+        justify-content: start;
+    }
+
+    .footer{
+        padding-right: 14px;
+        padding-left: 14px;
+    }
 }

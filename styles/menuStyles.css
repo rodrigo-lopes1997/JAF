@@ -292,6 +292,7 @@
 @media (max-width: 992px) {
     .menu-container {
         padding: 40px 40px;
+        max-width: 100%;
     }
 
     .menu-header {
@@ -308,7 +309,10 @@
     }
 
     .menu-images {
-        display: none;
+        left: 0;
+        top: 290px;
+        width: 420px;
+        height: 490px;
     }
 
     .submenu-content {
@@ -318,6 +322,10 @@
     .menu-footer {
         bottom: 40px;
         left: 40px;
+    }
+
+    .menu-submenu {
+        padding-top: 0;
     }
 }
 
