@@ -387,7 +387,20 @@
     }
 }
 
+/* Styles for tablets  */
+@media (min-width: 768px) and (max-width: 1025px) {
+    .menu-images{
+        left: 0;
+        bottom: 150px;
+        top: unset;
+        right: unset;
+    }
+}
+
+    
+
 /* Prevent body scroll when menu is open */
 body.menu-open {
     overflow: hidden;
 }
+
