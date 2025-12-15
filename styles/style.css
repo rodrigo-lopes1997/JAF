@@ -196,6 +196,33 @@ header {
     margin-bottom: 1rem;
 }
 
+/* rotating-cards */
+.rotating-cards-section {
+    background-color: #ACAB83;
+    padding: 5rem 0;
+    margin-top: 6em;
+    margin-bottom: 6em;
+}
+
+.rotating-cards-label {
+    font-family: 'Piazzolla', serif;
+    font-size: 24px;
+    line-height: 41px;
+    color: #3C1C0F;
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.ind_rot_cards{
+    /* padding: 0; */
+}
+
+.rotating-cards-section div{
+    --bs-gutter-x: 4.5rem;
+    
+}
+
 .section-label-grupo-jaf{
     font-family: 'Piazzolla', serif;
     font-size: 24px;
