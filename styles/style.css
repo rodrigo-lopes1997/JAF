@@ -544,6 +544,47 @@ header {
     height: 6px;
 }
 
+.btn-outline-investment-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--tronco-jaf);
+    border: 1px solid var(--tronco-jaf);
+    border-radius: 15px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #E7FF7E;
+    text-decoration: none;
+    height: 47px;
+    width: auto;
+    margin-left: 3.5rem;
+}
+
+.row-title-invest{
+    --bs-gutter-x:6rem !important;
+}
+
+.btn-outline-investment-section span {
+    padding-right: 20px;
+}
+
+.btn-outline-investment-section:hover {
+     background-color: transparent;
+     color: var(--tronco-jaf);
+    border: 1px solid var(--tronco-jaf);
+}
+
+.btn-outline-investment-section img{
+    width: 6px;
+    height: 6px;
+}
+
 .btn-cta:hover {
     background-color: var(--text-dark);
     color: #e7ff7e;
@@ -577,6 +618,24 @@ header {
 .btn-outline-about-section:hover .ponto_btns_castanho{
     display: block;
 }
+
+
+.btn-outline-investment-section .ponto_btns_flurescente{
+    display: block;
+}
+
+.btn-outline-investment-section .ponto_btns_castanho{
+    display: none;
+}
+
+.btn-outline-investment-section:hover .ponto_btns_flurescente{
+    display: none;
+}
+
+.btn-outline-investment-section:hover .ponto_btns_castanho{
+    display: block;
+}
+
 
 
 .hero-section .btn-outline-about-section {
@@ -928,6 +987,14 @@ header {
         display: flex;
         flex-direction: column;
         justify-content: center
+}
+
+#cta-section-invst{
+    height: 28em ;
+}
+
+.investTitle{
+    padding-top: 1em;
 }
 
 .cta-title {
