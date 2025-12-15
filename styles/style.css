@@ -211,7 +211,7 @@ header {
     color: #3C1C0F;
     font-style: italic;
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .ind_rot_cards{
@@ -219,8 +219,7 @@ header {
 }
 
 .rotating-cards-section div{
-    --bs-gutter-x: 4.5rem;
-    
+    --bs-gutter-x: 6.5rem;
 }
 
 .section-label-grupo-jaf{
@@ -259,8 +258,8 @@ header {
 /* Growing cards section */
 .growing-cards {
     background-color: var(--beige);
-    padding: 5rem 0;
-    margin: 3rem 3rem 6rem 3rem;
+    padding: 3rem 0;
+    margin: 0rem 3rem 0rem 3rem;
 }
 
 .growing-cards div{
@@ -923,7 +922,7 @@ header {
     background-color: #E7FF7E;
   	    color: white;
         padding: 5rem 3rem;
-        margin: 3rem 3rem 6rem 3rem;
+        margin: 6rem 3rem 6rem 3rem;
         border-radius: 20px;
         height: 20rem;
         display: flex;
@@ -1442,5 +1441,200 @@ img {
     .footer{
         padding-right: 14px;
         padding-left: 14px;
+    }
+}
+
+/* ============================================
+   Rotating Cards Section
+   ============================================ */
+
+/* .rotating-cards-section {
+    padding: 80px 0;
+    background-color: var(--beje-jaf);
+} */
+
+
+
+/* .ind_rot_cards {
+    padding: 15px;
+} */
+ .ind_rot_cards1{
+    padding-right: 10px;
+ }
+
+.ind_rot_cards2{
+    padding-left: 22px;
+    padding-right: 22px;
+ }
+ 
+ .ind_rot_cards3{
+    padding-left: 0;
+ }
+/* Flip Card Container */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 750px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Hover effect - flip the card */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front and Back faces */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Front side - Image */
+.flip-card-front {
+    background-color: #f5f5f5;
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Back side - Text content */
+.flip-card-back {
+    background-color: var(--tronco-jaf);
+    color: var(--text-light);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 50px 40px;
+    overflow-y: auto;
+}
+
+/* Circular Icon with G */
+.flip-card-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff006e 0%, #8338ec 50%, #3a86ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.flip-card-icon span {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Hide icon on back when hovered */
+.flip-card:hover .flip-card-back .flip-card-icon {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Content styling */
+.flip-card-content {
+    text-align: left;
+    position: relative;
+    z-index: 5;
+}
+
+.flip-card-logo {
+    width: auto;
+    height: auto;
+    margin-bottom: 50px;
+    filter: brightness(0) invert(1);
+}
+
+.flip-card-subtitle {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #d4d4d4;
+}
+
+.flip-card-description {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.flip-card-description-extra {
+    font-family: 'Lato', sans-serif;
+    font-size: 14.4px;
+    line-height: 1.6;
+    color: #b0b0b0;
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .flip-card {
+        height: 500px;
+        margin-bottom: 30px;
+    }
+
+    .flip-card-back {
+        padding: 30px 25px;
+    }
+
+    .flip-card-logo {
+        width: 140px;
+    }
+
+    .rotating-cards-label {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .flip-card-description {
+        font-size: 0.9rem;
+    }
+
+    .flip-card-description-extra {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .flip-card {
+        height: 450px;
+    }
+
+    .flip-card-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .flip-card-icon span {
+        font-size: 24px;
     }
 }
