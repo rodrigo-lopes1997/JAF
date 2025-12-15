@@ -460,3 +460,100 @@ if (document.readyState === 'loading') {
 } else {
     initMissionTitleReveal();
 }
+
+// ============================================
+// Growing Cards Counter Animation
+// ============================================
+
+function initGrowingCardsCounter() {
+    const cardsContainer = document.querySelector('.growing-cards-indv');
+
+    if (!cardsContainer) return;
+
+    const counterElements = cardsContainer.querySelectorAll('.growingCards-title');
+    let hasAnimated = false;
+
+    // Parse the target value from the element, handling different formats
+    function parseTargetValue(element) {
+        const text = element.textContent.trim();
+        const numberMatch = text.match(/\d+/);
+        const number = numberMatch ? parseInt(numberMatch[0]) : 0;
+        const suffix = text.replace(/\d+/g, '').trim(); // Get everything except numbers
+
+        return { number, suffix };
+    }
+
+    // Animate a counter from 0 to target value
+    function animateCounter(element, targetNumber, suffix, duration = 2000) {
+        const startTime = performance.now();
+        const startValue = 0;
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation (easeOutExpo)
+            const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+
+            const currentValue = Math.floor(startValue + (targetNumber - startValue) * easeProgress);
+
+            // Update the element with current value and suffix
+            element.textContent = currentValue + (suffix ? ' ' + suffix : '');
+
+            // Continue animation if not complete
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                // Ensure final value is exact
+                element.textContent = targetNumber + (suffix ? ' ' + suffix : '');
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    // Store original values for each counter
+    const countersData = Array.from(counterElements).map(element => {
+        const { number, suffix } = parseTargetValue(element);
+        return { element, targetNumber: number, suffix };
+    });
+
+    // Set initial values to 0
+    countersData.forEach(({ element, suffix }) => {
+        element.textContent = '0' + (suffix ? ' ' + suffix : '');
+    });
+
+    // Intersection Observer to trigger animation when section is visible
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3 // Trigger when 30% of the section is visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+
+                // Start animating all counters with slight delays for staggered effect
+                countersData.forEach(({ element, targetNumber, suffix }, index) => {
+                    setTimeout(() => {
+                        animateCounter(element, targetNumber, suffix);
+                    }, index * 100); // 100ms delay between each counter
+                });
+
+                // Stop observing after animation starts
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(cardsContainer);
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGrowingCardsCounter);
+} else {
+    initGrowingCardsCounter();
+}

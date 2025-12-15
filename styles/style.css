@@ -241,20 +241,11 @@ header {
     gap: 20px;
 }
 
-.growing-cards .growing-cards-indv div{
+.growing-cards .growing-cards-indv .cardsGrupoJaf{
     border: solid 1px #ACAB83;
     height: 500px;
     border-radius: 20px;
     position: relative;
-}
-
-.growing-cards .growing-cards-indv div img{
-    position: absolute;
-    right: 20px;
-    top: 20px;
-}
-
-.growing-cards .growing-cards-indv div{
     font-family: 'Inter', sans-serif;
     color: #878435;
     letter-spacing: 2.8px;
@@ -266,6 +257,17 @@ header {
     max-width: 24%;
 }
 
+.growing-cards .growing-cards-indv div img{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.numberPlusTitle p{
+    margin-left: .5rem;
+}
+
+
 .growing-cards .growing-cards-indv div nb{
     font-size: 50px;
 }
@@ -275,7 +277,7 @@ header {
     font-size: 100px;
     font-weight: 200;
     line-height: 1.3;
-   /*  margin-bottom: 0.5em; */
+    margin-bottom: 0em;
     color: #878435;
     position: relative;
     display: flex;
