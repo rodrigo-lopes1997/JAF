@@ -557,3 +557,224 @@ if (document.readyState === 'loading') {
 } else {
     initGrowingCardsCounter();
 }
+
+// ============================================
+// Stacked Cards Scroll Animation
+// ============================================
+
+function initStackedCards() {
+    const stackedSection = document.querySelector('.stacked-cards-section');
+    const stackCards = document.querySelectorAll('.stack-card');
+
+    if (!stackedSection || stackCards.length === 0) return;
+
+    let currentCardIndex = 0;
+    let isLocked = false;
+    let isCentering = false;
+    let lastScrollY = window.pageYOffset;
+    let wheelThrottle = false;
+
+    function setActiveCard(index) {
+        currentCardIndex = index;
+        stackCards.forEach((card, i) => {
+            card.classList.remove('active', 'scrolled-past');
+            if (i === currentCardIndex) {
+                card.classList.add('active');
+            } else if (i < currentCardIndex) {
+                card.classList.add('scrolled-past');
+            }
+        });
+    }
+
+    function centerSection(startCard = 0) {
+        if (isCentering) return;
+
+        isCentering = true;
+        const sectionRect = stackedSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionTop = sectionRect.top + window.pageYOffset;
+        const sectionHeight = sectionRect.height;
+        const targetScroll = sectionTop - (windowHeight / 2) + (sectionHeight / 2);
+
+        window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+        });
+
+        // Wait for smooth scroll to finish
+        setTimeout(() => {
+            isLocked = true;
+            isCentering = false;
+            setActiveCard(startCard);
+        }, 600);
+    }
+
+    function checkSectionPosition() {
+        const currentScrollY = window.pageYOffset;
+        const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
+        lastScrollY = currentScrollY;
+
+        const sectionRect = stackedSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const viewportCenter = windowHeight / 2;
+        const sectionCenter = sectionRect.top + sectionRect.height / 2;
+
+        // If currently centering, don't do anything
+        if (isCentering) return;
+
+        // Section is entering from top (scrolling down)
+        if (!isLocked && scrollDirection === 'down' &&
+            sectionRect.top < windowHeight * 0.5 && sectionRect.top > 0) {
+            // Trigger animation if we're on the first card (haven't completed going down yet)
+            // Don't trigger if we're on the last card (already completed going down)
+            if (currentCardIndex !== stackCards.length - 1) {
+                centerSection(0); // Start with first card
+                return;
+            }
+        }
+
+        // Section is entering from bottom (scrolling up from below)
+        if (!isLocked && scrollDirection === 'up' &&
+            sectionRect.bottom > windowHeight * 0.5 && sectionRect.bottom < windowHeight) {
+            // Trigger animation if we're on the last card (haven't completed going up yet)
+            // Don't trigger if we're on the first card (already completed going up)
+            if (currentCardIndex !== 0) {
+                centerSection(stackCards.length - 1); // Start with last card
+                return;
+            }
+        }
+
+        // Check if we should unlock because section moved away from center
+        if (isLocked) {
+            const distanceFromCenter = Math.abs(sectionCenter - viewportCenter);
+
+            // If section moved significantly away from center, unlock
+            if (distanceFromCenter > 200) {
+                isLocked = false;
+            }
+        }
+    }
+
+    // Handle wheel events for card navigation
+    let deltaAccumulator = 0;
+    const DELTA_THRESHOLD = 50; // Amount of scroll needed to trigger card change
+
+    function handleWheel(e) {
+        if (isCentering) {
+            e.preventDefault();
+            return;
+        }
+
+        const sectionRect = stackedSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const viewportCenter = windowHeight / 2;
+        const sectionCenter = sectionRect.top + sectionRect.height / 2;
+        const isCentered = Math.abs(sectionCenter - viewportCenter) < 200;
+
+        // Only handle if locked and centered
+        if (!isLocked || !isCentered) return;
+
+        // Always prevent default scroll when locked and centered
+        e.preventDefault();
+
+        // If already throttled, just prevent scroll but don't change cards
+        if (wheelThrottle) return;
+
+        // Accumulate scroll delta
+        deltaAccumulator += e.deltaY;
+
+        // Check if we've accumulated enough scroll to change card
+        if (Math.abs(deltaAccumulator) >= DELTA_THRESHOLD) {
+            const direction = deltaAccumulator > 0 ? 'down' : 'up';
+            deltaAccumulator = 0; // Reset accumulator
+
+            // Apply throttle
+            wheelThrottle = true;
+            setTimeout(() => { wheelThrottle = false; }, 600);
+
+            // Scrolling down
+            if (direction === 'down') {
+                if (currentCardIndex < stackCards.length - 1) {
+                    setActiveCard(currentCardIndex + 1);
+                } else {
+                    // Last card - unlock and allow scroll to continue
+                    isLocked = false;
+                    wheelThrottle = false;
+                    // Allow the next scroll event to pass through
+                    setTimeout(() => {
+                        deltaAccumulator = 0;
+                    }, 100);
+                }
+            }
+            // Scrolling up
+            else if (direction === 'up') {
+                if (currentCardIndex > 0) {
+                    setActiveCard(currentCardIndex - 1);
+                } else {
+                    // First card - unlock and allow scroll to continue
+                    isLocked = false;
+                    wheelThrottle = false;
+                    // Allow the next scroll event to pass through
+                    setTimeout(() => {
+                        deltaAccumulator = 0;
+                    }, 100);
+                }
+            }
+        }
+    }
+
+    // Handle navigation buttons
+    stackCards.forEach((card, cardIndex) => {
+        const prevBtn = card.querySelector('.card-nav-prev');
+        const nextBtn = card.querySelector('.card-nav-next');
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentCardIndex > 0) {
+                    setActiveCard(currentCardIndex - 1);
+                }
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentCardIndex < stackCards.length - 1) {
+                    setActiveCard(currentCardIndex + 1);
+                }
+            });
+        }
+
+        // Handle dot indicator clicks
+        const dots = card.querySelectorAll('.card-dot');
+        dots.forEach((dot) => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const targetCard = parseInt(dot.getAttribute('data-dot')) - 1;
+                if (targetCard >= 0 && targetCard < stackCards.length) {
+                    setActiveCard(targetCard);
+                }
+            });
+        });
+    });
+
+    // Listen for scroll to check section position
+    window.addEventListener('scroll', checkSectionPosition);
+
+    // Listen for wheel events to handle card navigation when locked
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    // Set first card as active on page load
+    setActiveCard(0);
+
+    // Initial check
+    checkSectionPosition();
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStackedCards);
+} else {
+    initStackedCards();
+}
