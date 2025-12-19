@@ -94,6 +94,16 @@ header {
     justify-content: center;
 }
 
+/* Hero Section */
+.hero-section-hist {
+    position: relative;
+    /* height: 100vh; */
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
  .hero-section div{
     padding: 0;
  }
@@ -234,6 +244,7 @@ header {
 }
 
 
+
 /* rotating-cards */
 .rotating-cards-section {
     background-color: #ACAB83;
@@ -277,6 +288,16 @@ header {
     line-height: 1.4;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
+}
+
+.about-text-history {
+    font-family: 'Piazzolla', serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    color: #3C1C0F !important;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .about-text-invest{
@@ -352,6 +373,20 @@ header {
     line-height: 1.3;
     margin-bottom: 0em;
     color: #878435;
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+}
+
+
+.historyHero-title {
+    font-family: 'Piazzolla', serif;
+    font-size: 100px;
+    font-weight: 200;
+    line-height: 1.3;
+    margin-bottom: 0em;
+    color: #3C1C0F;
     position: relative;
     display: flex;
     justify-content: start;
@@ -2076,6 +2111,11 @@ img {
     top: -18px;
     z-index: -1;
     position: relative;
+}
+
+.historyContainer{
+    background: linear-gradient(180deg, #f8eee4 -11%, #f8eee4 50%, #e3dac3 100%);
+    padding-top: 5em !important;
 }
 
 /* Tablet Responsive */
