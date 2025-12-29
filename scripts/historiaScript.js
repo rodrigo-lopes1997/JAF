@@ -7,39 +7,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const timelineContainer = document.querySelector('.timeline-container');
     const timelineSection = document.querySelector('.history-scroll-section');
 
-    // Configuration for Intersection Observer
-    const observerOptions = {
-        root: null, // Use viewport as root
-        rootMargin: '0px 0px -100px 0px', // Trigger slightly before element enters viewport
-        threshold: 0.2 // Trigger when 20% of element is visible
-    };
+    let lastScrollY = window.pageYOffset;
 
-    // Create the Intersection Observer
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add visible class to trigger animation
-                entry.target.classList.add('visible');
+    // Use scroll position based detection
+    function checkVisibility() {
+        const windowHeight = window.innerHeight;
+        const currentScrollY = window.pageYOffset;
+        const scrollingDown = currentScrollY > lastScrollY;
+        
+        timelineEntries.forEach((entry) => {
+            const rect = entry.getBoundingClientRect();
+            
+            if (scrollingDown) {
+                // When scrolling down, show entries as they come into view
+                if (rect.top < windowHeight * 0.85) {
+                    entry.classList.add('visible');
+                }
             } else {
-                // Remove class so animations retrigger when scrolling back
-                entry.target.classList.remove('visible');
+                // When scrolling up, hide entries that go below viewport
+                if (rect.top > windowHeight) {
+                    entry.classList.remove('visible');
+                }
             }
         });
-    }, observerOptions);
+        
+        lastScrollY = currentScrollY;
+    }
 
-    // Observe each timeline entry
-    timelineEntries.forEach(entry => {
-        observer.observe(entry);
-    });
-
-    // Update progress line and add parallax effect on scroll
+    // Update progress line on scroll
     let ticking = false;
 
     window.addEventListener('scroll', function() {
         if (!ticking) {
             window.requestAnimationFrame(function() {
+                checkVisibility();
                 updateProgressLine();
-                parallaxEffect();
                 ticking = false;
             });
             ticking = true;
@@ -52,8 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const sectionTop = timelineSection.offsetTop;
         const sectionHeight = timelineSection.offsetHeight;
-        const containerTop = timelineContainer.offsetTop;
-        const containerHeight = timelineContainer.offsetHeight;
         const scrolled = window.pageYOffset;
         const windowHeight = window.innerHeight;
 
@@ -66,41 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
 
         // Update the line height
+        const containerHeight = timelineContainer.offsetHeight;
         const lineHeight = containerHeight * clampedProgress;
         progressLine.style.height = `${lineHeight}px`;
     }
 
-    // Initial call to set the line height
+    // Initial calls
+    checkVisibility();
     updateProgressLine();
 
     // Update on window resize
     window.addEventListener('resize', function() {
+        checkVisibility();
         updateProgressLine();
     });
-
-    function parallaxEffect() {
-        const scrolled = window.pageYOffset;
-        const timelineSection = document.querySelector('.history-scroll-section');
-
-        if (timelineSection) {
-            const sectionTop = timelineSection.offsetTop;
-            const sectionHeight = timelineSection.offsetHeight;
-
-            // Only apply parallax when section is in view
-            if (scrolled + window.innerHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
-                timelineEntries.forEach((entry, index) => {
-                    const entryTop = entry.offsetTop;
-                    const entryOffset = scrolled - entryTop;
-
-                    // Apply subtle parallax to images
-                    const images = entry.querySelectorAll('.timeline-images img');
-                    images.forEach((img, imgIndex) => {
-                        const speed = 0.05 + (imgIndex * 0.02);
-                        const yPos = -(entryOffset * speed);
-                        img.style.transform = `translateY(${yPos}px)`;
-                    });
-                });
-            }
-        }
-    }
 });
