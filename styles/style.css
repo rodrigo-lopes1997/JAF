@@ -704,6 +704,10 @@ header {
     padding: 0;
 }
 
+.quality-products--home {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .quality-products--home .quality-card__image {
     display: flex;
     justify-content: end;
@@ -1459,7 +1463,7 @@ header {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    height: 400px;
+    height: 500px;
 }
 
 .gallery-img {
