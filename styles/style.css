@@ -602,7 +602,7 @@ header {
 }
 
 .product-card__title {
-    font-family: 'Avenir', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 0.9rem;
     letter-spacing: 0.1em;
@@ -921,6 +921,55 @@ header {
 
 .btn-cta span {
     padding-right: 20px;
+}
+
+.btn-cta-submit {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #E7FF7E;
+    border: 1px solid var(--olive-green);
+    border-radius: 15px;
+     padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #3C1C0F;
+    text-decoration: none;
+}
+
+.btn-cta-submit img {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+}
+
+.btn-cta-submit span {
+    padding-right: 20px;
+}
+
+.btn-cta-submit:hover {
+    background-color: var(--text-dark);
+    color: #e7ff7e;
+    transform: translateY(-2px);
+}
+
+.btn-cta-submit .ponto_btns_flurescente{
+    display: none;
+}
+
+.btn-cta-submit:hover .ponto_btns_verde{
+    display: none;
+}
+
+.btn-cta-submit:hover .ponto_btns_flurescente{
+    display: block;
 }
 
 .btn-cta-grupo-jaf {
@@ -1472,6 +1521,360 @@ img {
     max-width: 205px;
 }
 
+.pessoas_valores h4{
+    color: #878435;
+    padding: 2em 0;
+}
+
+.pessoas_valores{
+    padding: 6em 0;
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+}
+
+.candidaturas-section{
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+    padding-bottom: 6em;
+}
+
+/* Vagas Accordion */
+.vagas-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.vagas-accordion__item {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.vagas-accordion__item:not(.is-open) {
+    background-color: var(--tronco-jaf);
+}
+
+.vagas-accordion__item.is-open {
+    background-color: transparent;
+    border: 1px solid var(--tronco-jaf);
+}
+
+.vagas-accordion__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+}
+
+.vagas-accordion__title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    letter-spacing: 0.15em;
+    transition: color 0.3s ease;
+}
+
+.vagas-accordion__item:not(.is-open) .vagas-accordion__title {
+    color: #E7FF7E;
+}
+
+.vagas-accordion__item.is-open .vagas-accordion__title {
+    color: var(--tronco-jaf);
+}
+
+.vagas-accordion__icon {
+    width: 13px;
+    height: 13px;
+    transition: opacity 0.3s ease;
+}
+
+.vagas-accordion__item:not(.is-open) .vagas-accordion__icon--dot {
+    display: block;
+}
+
+.vagas-accordion__item:not(.is-open) .vagas-accordion__icon--cross {
+    display: none;
+}
+
+.vagas-accordion__item.is-open .vagas-accordion__icon--dot {
+    display: none;
+}
+
+.vagas-accordion__item.is-open .vagas-accordion__icon--cross {
+    display: block;
+}
+
+.vagas-accordion__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.vagas-accordion__item.is-open .vagas-accordion__content {
+    max-height: 500px;
+}
+
+.vagas-accordion__body {
+    display: flex;
+    gap: 3rem;
+    padding: 1rem 2rem 2rem 2rem;
+}
+
+.vagas-accordion__col {
+    flex: 1;
+}
+
+.vagas-accordion__label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: #735845;
+    margin-bottom: 1rem;
+}
+
+.vagas-accordion__text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #735845;
+}
+
+.vagas-accordion__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vagas-accordion__list li {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #735845;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.vagas-accordion__list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #735845;
+}
+
+/* Vagas Empty State */
+.vagas-empty {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid rgba(115, 88, 69, 0.3);
+    border-radius: 10px;
+    background: transparent;
+}
+
+.vagas-empty__dots {
+    width: 25%;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #a0a0a0;
+    letter-spacing: 0.2em;
+    line-height: 1;
+}
+
+.vagas-empty__text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #ACAB83;
+    margin: 0;
+}
+
+.vagas-empty__link {
+    color: #ACAB83;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.vagas-empty__link:hover {
+    color: var(--olive-green);
+}
+
+/* Candidatura Form Section */
+.candidatura-form-section {
+    background-color: var(--olive-green);
+    padding: 5rem 0;
+    border-radius: 20px;
+    margin: 0 3rem 6em 3rem;
+}
+
+.candidatura-form__title {
+    font-family: 'Piazzolla', serif;
+    font-size: 2.5rem;
+    font-weight: 200;
+    line-height: 1.3;
+    margin-bottom: 0.5em;
+    color: #E7FF7E;
+}
+
+.candidatura-form__text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 27px;
+    color: #F8EEE4;
+    max-width: 500px;
+}
+
+.candidatura-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.candidatura-form__row {
+    display: flex;
+    gap: 2rem;
+}
+
+.candidatura-form__row--full .candidatura-form__field {
+    flex: 1;
+}
+
+.candidatura-form__field {
+    flex: 1;
+}
+
+.candidatura-form__field input,
+.candidatura-form__field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ACAB83;
+    padding: 0.75rem 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #ACAB83;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.candidatura-form__field input::placeholder,
+.candidatura-form__field textarea::placeholder {
+    color: #ACAB83;
+    transition: color 0.3s ease;
+}
+
+.candidatura-form__field input:focus::placeholder,
+.candidatura-form__field textarea:focus::placeholder {
+    color: #E7FF7E;
+}
+
+.candidatura-form__field input:focus,
+.candidatura-form__field textarea:focus {
+    border-bottom-color: #E7FF7E;
+}
+
+.candidatura-form__field textarea {
+    resize: none;
+    border-radius: 0;
+    padding: 0.75rem 0;
+}
+
+.candidatura-form__field textarea:focus {
+    border-bottom-color: #E7FF7E;
+}
+
+.candidatura-form__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.candidatura-form__file {
+    cursor: pointer;
+}
+
+.candidatura-form__file-btn {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    border: 1px solid #ACAB83;
+    border-radius: 15px;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #ACAB83;
+    transition: all 0.3s ease;
+}
+
+.icon_plus_curriculum{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.candidatura-form__attach-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.candidatura-form__file-dot {
+    width: 6px;
+    height: 6px;
+}
+
+.candidatura-form__file:hover .candidatura-form__file-btn {
+    border-color: #E7FF7E;
+    color: #E7FF7E;
+}
+
+.candidatura-form__submit {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background-color: #E7FF7E;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--tronco-jaf);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.candidatura-form__submit img {
+    width: 6px;
+    height: 6px;
+}
+
+.candidatura-form__submit:hover {
+    background-color: var(--beige);
+}
+
+.curriculo_floreshente{
+    display: none;
+}
+
+.candidatura-form__file:hover .curriculo_floreshente{
+    display: block;
+}
+
+.candidatura-form__file:hover .curriculo_cizento{
+    display: none;
+}
 
 /* Tablet Media Query */
 @media (min-width: 768px) and (max-width: 1024px) {

@@ -778,3 +778,33 @@ if (document.readyState === 'loading') {
 } else {
     initStackedCards();
 }
+
+// Vagas Accordion
+function initVagasAccordion() {
+    const accordionItems = document.querySelectorAll('.vagas-accordion__item');
+    
+    if (!accordionItems || accordionItems.length === 0) return;
+    
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.vagas-accordion__header');
+        
+        header.addEventListener('click', () => {
+            const isOpen = item.classList.contains('is-open');
+            
+            // Close all items
+            accordionItems.forEach(i => i.classList.remove('is-open'));
+            
+            // If it wasn't open, open it
+            if (!isOpen) {
+                item.classList.add('is-open');
+            }
+        });
+    });
+}
+
+// Initialize accordion when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVagasAccordion);
+} else {
+    initVagasAccordion();
+}
