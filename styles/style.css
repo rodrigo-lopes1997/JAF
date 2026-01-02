@@ -353,6 +353,21 @@ header {
 --bs-gutter-x: 13.5rem;
 }
 
+.about-section-cert div{
+    --bs-gutter-x: 7.5rem;
+}
+
+.links_cert{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+.links_cert p{
+    margin-bottom: 0;
+}
+
 /* Growing cards section */
 .growing-cards {
     background-color: var(--beige);
@@ -1220,6 +1235,50 @@ header {
     display: none;
 }
 
+.btn-cta-grupo-cert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #E7FF7E;
+    border: 1px solid var(--olive-green);
+    border-radius: 15px;
+     padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #3C1C0F;
+    text-decoration: none;
+}
+
+.btn-cta-grupo-cert img {
+    width: auto;
+    height: 23px;
+    flex-shrink: 0;
+}
+
+.btn-cta-grupo-cert span {
+    padding-right: 20px;
+}
+
+.btn-cta-grupo-cert:hover {
+    background-color: transparent;
+    border: 1px solid #3C1C0F;
+    color: #3C1C0F;
+}
+
+
+.btn-cta-grupo-cert:hover .ponto_btns_flurescente{
+    display: block;
+}
+
+.btn-cta-grupo-cert:hover .ponto_btns_verde{
+    display: none;
+}
+
 .text-end{
     display: flex;
     justify-content: end;
@@ -1850,6 +1909,12 @@ img {
     padding: 1rem 2rem 2rem 2rem;
 }
 
+.vagas-accordion__body_cert {
+    display: flex;
+    gap: 3rem;
+    padding: 0 2rem 2rem 2rem;
+}
+
 .vagas-accordion__col {
     flex: 1;
 }
@@ -1861,6 +1926,15 @@ img {
     letter-spacing: 0.1em;
     color: #735845;
     margin-bottom: 1rem;
+}
+
+.vagas-accordion__label_cert {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    color: #ACAB83;
+    margin-bottom: 2rem;
 }
 
 .vagas-accordion__text {
