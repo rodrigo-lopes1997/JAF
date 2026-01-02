@@ -564,9 +564,13 @@ if (document.readyState === 'loading') {
 
 function initStackedCards() {
     const stackedSection = document.querySelector('.stacked-cards-section');
-    const stackCards = document.querySelectorAll('.stack-card');
+    
+    if (!stackedSection) return;
+    
+    // Scope card selection to within the section
+    const stackCards = stackedSection.querySelectorAll('.stack-card');
 
-    if (!stackedSection || stackCards.length === 0) return;
+    if (stackCards.length === 0) return;
 
     let currentCardIndex = 0;
     let isLocked = false;
@@ -582,6 +586,27 @@ function initStackedCards() {
                 card.classList.add('active');
             } else if (i < currentCardIndex) {
                 card.classList.add('scrolled-past');
+            }
+        });
+        
+        // Update navigation button states for all cards
+        stackCards.forEach((card) => {
+            const prevBtn = card.querySelector('.card-nav-prev');
+            const nextBtn = card.querySelector('.card-nav-next');
+            
+            if (prevBtn) {
+                if (currentCardIndex === 0) {
+                    prevBtn.classList.add('nav-disabled');
+                } else {
+                    prevBtn.classList.remove('nav-disabled');
+                }
+            }
+            if (nextBtn) {
+                if (currentCardIndex === stackCards.length - 1) {
+                    nextBtn.classList.add('nav-disabled');
+                } else {
+                    nextBtn.classList.remove('nav-disabled');
+                }
             }
         });
     }
