@@ -227,10 +227,10 @@
 .menu-images {
     position: absolute;
     right: 0;
-    top: -50px;
+    top: 0px;
     width: 565px;
     height: 650px;
-    border-radius: 0 10px 10px 0;
+    border-radius: 10px 10px 10px 10px;
     overflow: hidden;
 }
 

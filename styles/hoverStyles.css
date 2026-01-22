@@ -165,7 +165,6 @@
 .card__title--horizontal {
   color: #3C1C0F;
   position: absolute;
-  top: 140px;
   left: 50px;
   opacity: 0;
   visibility: hidden;
@@ -187,7 +186,9 @@
   left: 50px;
 }
 
-
+.pontFlorHover{
+  display: none ;
+}
 
 
 .card__button {
@@ -215,6 +216,26 @@
     left: 50px;
 }
 
+.card__button:hover {
+  background-color: transparent;
+  border: 1px solid #E7FF7E;
+  color: #E7FF7E;
+}
+
+.card__button:hover span{
+  color: #E7FF7E;
+}
+
+.card__button:hover .pontFlorHover{
+  display: block;
+}
+
+.card__button:hover .pontCastHover{
+  display: none ;
+}
+
+
+
 .card__button span {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
@@ -228,7 +249,7 @@
 .card__button img {
   width: 6px;
   height: 6px;
-  display: block !important;
+  /* display: block ; */
 }
 
 /* Show/hide title versions based on state */
