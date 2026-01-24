@@ -216,6 +216,17 @@ header {
     margin-bottom: 1rem;
 }
 
+.section-label-produtos {
+    font-family: 'Inter', serif;
+    font-size: 24px;
+    line-height: 41px;
+    color: #ACAB83;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    --bs-gutter-x: 9rem;
+}
+
 .section-label-pile {
     font-family: 'Inter', serif;
     font-size: 13px;
@@ -328,6 +339,11 @@ header {
     margin-bottom: 1.5rem;
 }
 
+.about-text-large-produtos{
+        --bs-gutter-x: 9rem;
+}
+
+
 .about-small-text {
      font-family: 'Inter', serif;
      font-weight: 300;
@@ -351,6 +367,20 @@ header {
 
 .about-section div{
 --bs-gutter-x: 13.5rem;
+}
+
+.about-section-produtos div{
+--bs-gutter-x: 9rem;
+}
+
+.about-section-produtos-v1{
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding: 0 !important;
+}
+
+.about-section-produtos-v2{
+    margin-bottom: 0em !important;
 }
 
 .about-section-cert div{
@@ -2837,6 +2867,10 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.stacked-cards-section-produtos-v2 {
+    margin: -4rem 4rem;
 }
 
 .cards-container {
