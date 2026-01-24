@@ -427,6 +427,7 @@ header {
 }
 
 
+
 .historyHero-title {
     font-family: 'Piazzolla', serif;
     font-size: 100px;
@@ -1467,12 +1468,40 @@ header {
     object-fit: cover;
 }
 
+.gallery-card .image1with-filter,
+.gallery-card .image1without-filter {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0s linear;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+.gallery-card .image1with-filter {
+    opacity: 0;
+    z-index: 2;
+}
+
+.gallery-card .image1without-filter {
+    opacity: 1;
+    z-index: 1;
+}
+
+.gallery-card:hover .image1with-filter {
+    opacity: 1;
+}
+
+.gallery-card:hover .image1without-filter {
+    opacity: 0;
+}
+
 .gallery-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 3;
     padding: 2rem;
     display: flex;
     flex-direction: column;
