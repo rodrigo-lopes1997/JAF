@@ -1176,6 +1176,61 @@ header {
     display: none;
 }
 
+.p2020-ppr {
+    padding: 3rem 0;
+    margin: 0rem 3rem;
+}
+
+.p2020-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background-color: #f5ede3;
+    border: 1px solid #d8ccbd;
+    border-radius: 14px;
+    padding: 18px 24px;
+}
+
+.p2020-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.p2020-left p {
+    margin: 0;
+    font-size: 14px;
+    color: #3C1C0F;
+    white-space: nowrap;
+}
+
+.p2020-left img,
+.p2020-right img {
+    max-height: 60px;
+    width: auto;
+}
+
+.p2020-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+@media (max-width: 768px) {
+    .p2020-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .p2020-right {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
 .btn-outline-investment-section:hover .ponto_btns_flurescente{
     display: none;
 }
