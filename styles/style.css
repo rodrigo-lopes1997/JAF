@@ -218,7 +218,7 @@ header {
 
 .section-label-pile {
     font-family: 'Inter', serif;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 41px;
     color: #ACAB83;
     font-weight: 300;
@@ -231,7 +231,7 @@ header {
 
 .section-label-pile-v2 {
     font-family: 'Inter', serif;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 11px;
     color: #3C1C0F;
     font-weight: 300;
@@ -243,7 +243,7 @@ header {
 
 .section-label-pile-v3 {
     font-family: 'Inter', serif;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 41px;
     color: #3C1C0F;
     font-weight: 300;
@@ -313,7 +313,7 @@ header {
 .about-text-invest{
     font-family: 'Piazzolla', serif;
     font-weight: 300;
-    font-size: 42px;
+    font-size: 38px;
     line-height: 1.4;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
@@ -322,7 +322,7 @@ header {
 .about-text-large{
     font-family: 'Piazzolla', serif;
     font-weight: 300;
-    font-size: 42px;
+    font-size: 38px;
     line-height: 1.4;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
@@ -341,7 +341,7 @@ header {
 .about-small-text-servicos {
      font-family: 'Inter', serif;
      font-weight: 300;
-    font-size: 0.9rem;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--text-dark);
     opacity: 0.8;
@@ -396,6 +396,18 @@ header {
     max-width: 24%;
 }
 
+@media (min-width: 1025px) {
+    .growing-cards .growing-cards-indv {
+        flex-wrap: nowrap;
+        --bs-gutter-x: 3rem;
+    }
+
+    .growing-cards .growing-cards-indv .cardsGrupoJaf {
+        flex: 1 1 0;
+        max-width: 25%;
+    }
+}
+
 .growing-cards .growing-cards-indv div img{
     position: absolute;
     right: 20px;
@@ -424,6 +436,108 @@ header {
     display: flex;
     justify-content: start;
     align-items: baseline;
+}
+
+.growingCards-title-invest {
+    font-family: 'Piazzolla', serif;
+    letter-spacing: -5px;
+    font-size: 110px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0em;
+    color: #878435;
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    padding-top: 1em;
+}
+
+.growingCards-title-servicos {
+    font-family: 'Piazzolla', serif;
+    letter-spacing: -5px;
+    font-size: 110px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0em;
+    color: #878435;
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    padding-top: 1em;
+}
+
+.growingCards-title--million::after {
+    content: " M";
+    font-size: 80px;
+    line-height: 1;
+    margin-left: 4px;
+}
+
+@media (max-width: 1450px) and (min-width: 1251px) {
+    .growingCards-title {
+        font-size: 110px;
+    }
+
+    .numberPlusTitle p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1250px) and (min-width: 1024px) {
+    .growingCards-title {
+        font-size: 75px;
+    }
+
+    .numberPlusTitle p {
+        font-size: 13px;
+    }
+
+    .growing-cards div {
+        --bs-gutter-x: 4.5rem;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .growing-cards .growing-cards-indv {
+        flex-wrap: wrap;
+        --bs-gutter-x: 2rem;
+    }
+
+    .growing-cards .growing-cards-indv .cardsGrupoJaf {
+        flex: 0 0 50%;
+        max-width: 48%;
+        width: 48%;
+    }
+
+       .growing-cards div {
+        --bs-gutter-x: 0rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .growing-cards .growing-cards-indv {
+        flex-wrap: wrap;
+        --bs-gutter-x: 1.5rem;
+    }
+
+    .growing-cards .growing-cards-indv .cardsGrupoJaf {
+        flex: 0 0 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .growing-cards div {
+        --bs-gutter-x: 0rem;
+    }
+}
+
+.growingCards-title--million::after {
+    content: " M";
+    font-size: 80px;
+    line-height: 1;
+    margin-left: 4px;
 }
 
 
@@ -559,7 +673,7 @@ header {
 .quality-text {
     font-family: 'Piazzolla', serif;
     font-weight: 300;
-    font-size: 28px;
+    font-size: 38px;
     line-height: 1.5;
     color: var(--text-dark);
     margin-bottom: 0;
@@ -644,7 +758,7 @@ header {
     position: relative;
     color: #ACAB83;
     font-family: 'Inter', sans-serif;
-    font-size: 13px;
+    font-size: 16px;
     letter-spacing: 0.02em;
     padding: 2rem 2rem 2rem 2rem;
 }
@@ -1330,7 +1444,7 @@ header {
 
 .commitment-title {
     font-family: 'Piazzolla', serif;
-    font-size: 2.5rem;
+    font-size: 38px;
     font-weight: 200;
     line-height: 1.3;
     margin-bottom: 0.8em;
@@ -1345,7 +1459,7 @@ header {
     justify-content: right;
     align-items: start;
     position: relative;
-    height: 310px;
+    height: 320px;
 }
 
 .commitment-card button{
@@ -1384,7 +1498,7 @@ header {
     font-family: 'Inter', sans-serif;
     font-weight: 100;
     height: 90px;
-    font-size: 0.95rem;
+    font-size: 16px;
     line-height: 1.6;
     margin-bottom: 2rem;
 }
@@ -1427,7 +1541,7 @@ header {
 
 .mission-title {
     font-family: 'Piazzolla', serif;
-    font-size: 55px;
+    font-size: 38px;
     font-weight: 300;
     line-height: 1.4;
     color: var(--text-dark);
@@ -1550,7 +1664,7 @@ header {
 .gallery-title {
     font-family: 'Piazzolla', serif;
     color: #E7FF7E;
-    font-size: 32px;
+    font-size: 38px;
     font-weight: 300;
     line-height: 1.3;
     opacity: 0;
@@ -1604,12 +1718,9 @@ header {
 }
 
 #cta-section-invst{
-    height: 28em ;
+    height: 32em ;
 }
 
-.investTitle{
-    padding-top: 1em;
-}
 
 .cta-title {
     font-family: 'Piazzolla', serif;
@@ -2089,7 +2200,7 @@ img {
 .candidatura-form__text {
     font-family: 'Inter', sans-serif;
     font-weight: 200;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 27px;
     color: #F8EEE4;
     max-width: 500px;
@@ -2122,7 +2233,7 @@ img {
     border-bottom: 1px solid #ACAB83;
     padding: 0.75rem 0;
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: 16px;
     color: #ACAB83;
     outline: none;
     transition: border-color 0.3s ease;
@@ -2909,7 +3020,7 @@ img {
 
 .stack-card-title {
     font-family: 'Piazzolla', serif;
-    font-size: 42px;
+    font-size: 38px;
     font-weight: 300;
     line-height: 1.3;
     color: var(--text-dark);
@@ -2923,6 +3034,7 @@ img {
     line-height: 1.7;
     color: #666;
     margin-bottom: 0px;
+    max-width: 90%;
 }
 
 .stack-card-footer {
